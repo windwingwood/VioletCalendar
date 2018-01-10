@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--Create by Kaztha-->
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>京紫世日历</title>
+        <style type="text/css">
+			#output{
+				font-size:12px;
+			}
+			.error{
+				color:red;
+			}
+			div{
+                text-align:center;
+                font-size:30px;
+			}
+			#day{
+                font-size:35px;
+			}
+			#time{
+                font-size:50px;
+			}
+			#vio{
+                font-size:40px;
+                color:Violet
+			}
+		</style>
+		<script>
+            function load(){
+                var now  = new Date();
+                var year = now.getYear() - 117;
+                var month= now.getMonth()+1;
+                var day  = now.getDate()-10;
+                var hour = now.getHours();
+                var min  = now.getMinutes();
+            
+                if(day<=0){
+                    switch(month){
+                        case 1:day += 31;year--;break;
+                        case 2:day += 31;break;
+                        case 3:
+                        var ly = year+2017;
+                        if((ly % 4 == 0) && (ly % 100 != 0 || ly % 400 == 0)){
+                            day += 29;
+                        }else day += 28;
+                        break;
+                        case 4:day += 31;break;
+                        case 5:day += 30;break;
+                        case 6:day += 31;break;
+                        case 7:day += 30;break;
+                        case 8:day += 31;break;
+                        case 9:day += 31;break;
+                        case 10:day += 30;break;
+                        case 11:day += 31;break;
+                        case 12:day += 30;break;
+                    }
+                    month = (month+11)%13 +1;
+                }
+                document.getElementById("day").innerHTML=year+"年 "+month+"月 "+day+"日";
+                document.getElementById("time").innerHTML=hour+"时 "+min+"分";
+                var abc = setTimeout("load()",20000);
+            }
+            
+		</script>
+    </head>
+    <body onload="load()">
+    <div id="a">现在是&nbsp;
+        <span id="vio">京紫世</span>&nbsp;
+        <span id="day"></span></div>
+    <div id="time"></div>
+    </body>
+
+</html>
